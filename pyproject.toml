@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stock-analyzer"
+version = "0.1.0"
+description = "Multi-period stock price trend and fundamentals analysis reports."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "yfinance>=0.2.40",
+    "matplotlib>=3.8.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+stock-analyzer = "stock_analyzer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["stock_analyzer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
